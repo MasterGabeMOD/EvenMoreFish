@@ -294,6 +294,10 @@ public class SellGUI implements InventoryHolder {
     }
     
     private @Nullable SoldFish getSoldFish(final ItemStack item) {
+        if (item == null || item.getType() == Material.AIR || item.getAmount() == 0) {
+            return null;
+        }
+
         double itemValue = WorthNBT.getValue(item);
         if (itemValue == -1.0) {
             return null;
