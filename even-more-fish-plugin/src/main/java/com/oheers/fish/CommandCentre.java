@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import com.oheers.fish.config.messages.PrefixType;
 
 import java.util.*;
 
@@ -56,6 +57,7 @@ public class CommandCentre implements TabCompleter, CommandExecutor {
                 "help",
                 "shop",
                 "sellall",
+                "next",
                 "toggle",
                 "top",
                 "gui")
@@ -161,6 +163,11 @@ public class CommandCentre implements TabCompleter, CommandExecutor {
                 } else {
                     new Message(ConfigMessage.ECONOMY_DISABLED).broadcast(sender, true, false);
                 }
+                break;
+            case "next":
+                Message message = Competition.getNextCompetitionMessage();
+                message.usePrefix(PrefixType.DEFAULT);
+                message.broadcast(sender, true, true);
                 break;
             case "toggle":
                 if (!(sender instanceof Player)) {
